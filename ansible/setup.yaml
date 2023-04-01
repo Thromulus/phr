@@ -1,0 +1,8 @@
+- hosts: phrs
+  become: yes
+  gather_facts: yes
+  roles:
+    - role: users
+    - role: aries1980.k9s
+    - role: githubixx.kubectl
+    - role: init

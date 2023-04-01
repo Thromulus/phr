@@ -1,0 +1,2 @@
+## Allows people in group administrators act as root
+%administrators        ALL=(ALL)       ALL

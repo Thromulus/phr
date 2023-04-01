@@ -1,0 +1,11 @@
+---
+service_groups:
+  - "administrators"
+
+admin_users:
+  - user:
+     name: "phrase_admin"
+
+users:
+  - user:
+     name: "phrase_user"

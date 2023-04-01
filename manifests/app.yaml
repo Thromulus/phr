@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phrase
+  namespace: phrase
+  labels:
+    app: phrase
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: phrase
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: phrase
+    spec:
+      containers:
+      - name: phrase
+        image: fivpuupoldqschnjkm/phr_app:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: phrase-svc
+  namespace: phrase
+spec:
+  type: LoadBalancer
+  ports:
+  - name: phrase
+    port: 5000
+  selector:
+    app: phrase

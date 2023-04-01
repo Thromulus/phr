@@ -1,0 +1,5 @@
+---
+- name: PACKAGE | Installing common packages
+  package:
+    name: "{{ packages }}"
+    state: present

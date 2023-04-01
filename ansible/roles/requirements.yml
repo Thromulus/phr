@@ -1,0 +1,3 @@
+# Install a role from the Ansible Galaxy
+- src: aries1980.k9s
+- src: githubixx.kubectl

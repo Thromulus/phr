@@ -1,0 +1,42 @@
+---
+- name: GROUP | Make sure groups exists
+  group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ service_groups }}"
+
+- name: TEMPLATE | Deploy sudoers configuration
+  template:
+    src: templates/administrators
+    dest: /etc/sudoers.d/administrators
+    validate: 'visudo -cf %s'
+
+- name: USER | Add admin users
+  user:
+    name: "{{ item.value.name }}"
+    shell: /bin/bash
+    createhome: yes
+    comment: "Phrase engineer"
+    groups: administrators
+    update_password: always
+  with_dict: "{{ admin_users }}"
+
+- name: AUTHORIZED_KEY | Ssh key upload admin
+  authorized_key:
+    user: "{{ item.value.name }}"
+    key: "{{ lookup('file', 'files/{{ item.value.name }}.pub') }}"
+  with_dict: '{{ admin_users }}'
+
+- name: USER | Add classic users
+  user:
+    name: "{{ item.value.name }}"
+    shell: /bin/bash
+    createhome: yes
+    comment: "Phrase user"
+  with_dict: "{{ users  }}"
+
+- name: AUTHORIZED_KEY | Ssh key upload user
+  authorized_key:
+    user: "{{ item.value.name }}"
+    key: "{{ lookup('file', 'files/{{ item.value.name }}.pub') }}"
+  with_dict: '{{ users }}'
