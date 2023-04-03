@@ -5,8 +5,8 @@ ansible-galaxy install -p roles/ -r roles/requirements.yml
 ansible-playbook -i hosts setup.yaml -v -u your_username --ask-become
 ```
 ## Prerequisites
-Kubectl
-Docker
+- Kubectl
+- Docker
 
 
 ## Usage of deployment script
