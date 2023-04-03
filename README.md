@@ -32,7 +32,7 @@ For the test purposes use following entry in your hosts file
 
 #### Security
 This repo consists includes multiple secrets just for easier review of the task.
-Any ansible secrets should by encrypted using ansible-vault and keys secrets encrypted using SOPS.
+Any ansible secrets should by encrypted using ansible-vault and k8s secrets encrypted using SOPS.
 Same applies for secrets in Python code. Might be passed as ENVs during startup from k8s secrets.
 
 #### Deployment implemetation
