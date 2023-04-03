@@ -36,7 +36,7 @@ Any ansible secrets should by encrypted using ansible-vault and k8s secrets encr
 Same applies for secrets in Python code. Might be passed as ENVs during startup from k8s secrets.
 
 #### Deployment implemetation
-Deploy ingress controller through Helm
-Instead of manual work with shell script use Flux, CI/CD, Helm
+- Deploy ingress controller through Helm
+- Instead of manual work with shell script use Flux, CI/CD, Helm
 
 
